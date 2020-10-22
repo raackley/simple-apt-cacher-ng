@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-apt-cacher-ng
+  labels:
+    name: simple-apt-cacher-ng
+spec:
+  containers:
+    - name: simple-apt-cacher-ng
+      image: raackley/simple-apt-cacher-ng
+      ports:
+        - containerPort: 3142
+          protocol: TCP
+      volumeMounts:
+        - mountPath: /var/cache/apt-cacher-ng
+          name: data
+  volumes:
+    - name: data
+      emptyDir: {}
